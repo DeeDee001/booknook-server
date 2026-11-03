@@ -1,0 +1,29 @@
+{
+  "name": "booknook-server",
+  "version": "1.0.0",
+  "description": "BookNook - Express & MongoDB Backend Server API",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "booknook",
+    "library",
+    "express",
+    "mongodb"
+  ],
+  "author": "BookNook Developer",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
