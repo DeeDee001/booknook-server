@@ -25,9 +25,23 @@ BookNook is a lightweight, secure online library management REST API built with 
 | `GET` | `/borrows` | Protected | Fetch books borrowed by the currently logged-in user |
 | `DELETE` | `/borrows/:id` | Protected | Return a borrowed book (restores copy count) |
 
-## Setup & Local Installation
+## Deployment Guidelines
 
-1. Navigate to the server directory:
+### Deploying to Render
+1. Create a new Web Service connected to your BookNook server repository.
+2. Build Command: `npm install`
+3. Start Command: `npm start`
+4. Set Environment Variables in Render Dashboard:
+   - `PORT=5000`
+   - `MONGODB_URI=<Your MongoDB connection string>`
+   - `JWT_SECRET=<Your JWT secret>`
+   - `CLIENT_URL=<Your frontend URL>`
+
+### Security & Verification
+- Never commit real `.env` files into version control.
+- Ensure all protected endpoints receive the `Authorization: Bearer <token>` header.
+- CORS origins are restricted to authorized client domains.
+
    ```bash
    cd server-side
    ```
