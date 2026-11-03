@@ -113,9 +113,22 @@ async function run() {
     });
 
     if (process.env.NODE_ENV !== "test") {
-      app.listen(PORT, () => {
+      const server = app.listen(PORT, () => {
         console.log(`BookNook server is running on port ${PORT}`);
       });
+
+      // Graceful shutdown
+      const shutdown = async () => {
+        console.log("Shutting down gracefully...");
+        server.close(async () => {
+          await client.close();
+          console.log("MongoDB connection closed.");
+          process.exit(0);
+        });
+      };
+
+      process.on("SIGINT", shutdown);
+      process.on("SIGTERM", shutdown);
     }
   } catch (err) {
     console.error("MongoDB Connection Error:", err);
