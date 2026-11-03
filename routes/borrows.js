@@ -19,6 +19,14 @@ const createBorrowsRouter = (db) => {
         });
       }
 
+      const today = new Date().toISOString().split("T")[0];
+      if (returnDate < today) {
+        return res.status(400).json({
+          success: false,
+          message: "Return date cannot be in the past. Please select a valid future date.",
+        });
+      }
+
       if (!ObjectId.isValid(bookId)) {
         return res.status(400).json({ success: false, message: "Invalid book ID format" });
       }
