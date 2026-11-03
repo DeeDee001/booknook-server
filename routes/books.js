@@ -89,7 +89,16 @@ const createBooksRouter = (db) => {
       }
 
       const copies = parseInt(totalCopies, 10);
-      const parsedCopies = isNaN(copies) || copies < 1 ? 1 : copies;
+      const parsedCopies = isNaN(copies) || copies < 0 ? 1 : copies;
+
+      // Ensure valid URL or image string
+      const sanitizedImage = image.trim();
+      if (!sanitizedImage.startsWith("http://") && !sanitizedImage.startsWith("https://") && !sanitizedImage.startsWith("data:image/")) {
+        return res.status(400).json({
+          success: false,
+          message: "Please provide a valid image URL for the book cover",
+        });
+      }
 
       const newBook = {
         title: title.trim(),
